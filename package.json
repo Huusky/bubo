@@ -1,0 +1,17 @@
+{
+  "name": "bubo",
+  "version": "0.0.0",
+  "description": "Bubo",
+  "main": "app.js",
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "colors": "^1.4.0",
+    "discord.js": "^11.5.1",
+    "sqlite3": "^4.1.1"
+  },
+  "devDependencies": {
+    "eslint-config-google": "^0.14.0"
+  }
+}
