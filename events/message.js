@@ -6,7 +6,7 @@ module.exports = async (client, message) => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
     
     //get args and command name
-    const args = message.content.slice(prefix.length).split(/ +/);
+    const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const commandName = args.shift().toLowerCase();
 
     //get command from client.commands
