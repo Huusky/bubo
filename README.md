@@ -1,5 +1,6 @@
 ﻿# Bubo
  ![](https://img.shields.io/github/issues/Huusky/bubo?style=flat-square)
+ ![](https://img.shields.io/github/issues-pr/Huusky/bubo?style=flat-square)
 ---
 ### Features
 
