@@ -24,3 +24,7 @@ If the course does not exist, it will reply to the invoker that no course exists
 
 **Degree command**:
 Coming soon
+
+### Issues or Feature Requests?
+
+Feel free to create a new issue for feature requests, course add requests, or general issues. There is an issue template for course additions.
