@@ -9,7 +9,7 @@ client.prefix = prefix;
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
 
-client.db = mysql.createConnection({
+client.db = mysql.createPool({
     host: db_host,
     user: db_user,
     password: db_pass,
