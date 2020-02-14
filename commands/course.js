@@ -14,7 +14,10 @@ module.exports = {
                 logger.log(err, 'error');
                 return;
             }
-            console.log(result);
+            if (typeof result[0] === 'undefined') {
+                message.reply('Please enter a valid course id');
+                return;
+            }
             message.reply(`${course_id} is ${result[0].name}`)
         });
     }
