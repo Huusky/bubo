@@ -16,7 +16,7 @@ module.exports = {
                 return;
             }
             if (typeof result[0] === 'undefined') {
-                message.reply('Please enter a valid course id');
+                message.reply('Please enter a valid course ID');
                 return;
             }
             const embed = new Discord.RichEmbed()
