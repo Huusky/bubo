@@ -10,6 +10,10 @@
 
 ### Usage
 
+**Help command**:
+To get a list of commands, use `bubo help` 
+To get specific help with a command, use `bubo help <command>`
+
 **Course command**:
 To search for a course, use `bubo course <course code>`
 If the course exists, it will reply to the invoker with the course name.

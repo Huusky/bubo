@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 module.exports = {
     name: 'help',
     description: 'Get list of commands',
-    usage: 'help or help <command>',
+    usage: 'or help <command>',
     args: false,
     enabled: true,
     execute(message, args) {
@@ -21,10 +21,10 @@ module.exports = {
             const command = message.client.commands.get(name);
             const embed = new Discord.RichEmbed()
                 .setColor('#FFFFFF')
-                .setTitle(`${args[0].toLowerCase()} help`)
-                .addField('Name', `${command.name}`)
+                .setTitle(`Help for ${args[0].toLowerCase()}`)
+                .addField('Name', `${name}`)
                 .addField('Description', `${command.description}`)
-                .addField('Usage', `${command.usage}`)
+                .addField('Usage', `${message.client.prefix} ${name} ${command.usage}`)
                 .addField('Args', `${command.args}`, true)
                 .addField('Enabled', `${command.enabled}`, true);
             message.channel.send(embed);
