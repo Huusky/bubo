@@ -1,13 +1,28 @@
 const Discord = require('discord.js');
-const {token, prefix}= require('./config.json');
+const {token,prefix,db_name,db_host,db_user,db_pass}= require('./config.json');
 const logger = require('./util/logger');
-const sqlite = require('sqlite3');
+const mysql = require('mysql');
 const fs = require('fs');
 
 const client = new Discord.Client();
 client.prefix = prefix;
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
+
+client.db = mysql.createConnection({
+    host: db_host,
+    user: db_user,
+    password: db_pass,
+    database: db_name
+});
+
+client.db.connect((err) => {
+    if (err) {
+        logger.log(err, 'error');
+        throw err;
+    }
+    logger.log('db connected');
+})
 
 //load commands from /commands/ folder
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
