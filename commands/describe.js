@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const sqlite = require('sqlite3');
+const logger = require('../util/logger');
 
 module.exports = {
     name: 'describe',
@@ -8,30 +8,26 @@ module.exports = {
     args: true,
     enabled: true,
     execute(message, args) {
-        const db = new sqlite.Database('./data.sqlite');
-
-        if (!args.length) {
-            return message.channel.send(`You didn't provide a course code! ${message.author}`);
-        }
-        let course_num = args[0].toUpperCase();
-        let sql_course_name = `SELECT * FROM 'courses' WHERE course_num='${course_num}'`;
-        db.all(sql_course_name, [], (err, row) => {
+        const course_id = args[0].toUpperCase();
+        const sql = `SELECT name, description, pdf_url FROM courses WHERE id=?`;
+        message.client.db.query(sql, [course_id], (err, result) => {
             if (err) {
                 logger.log(err, 'error');
-                message.channel.send(`There was an error! Please check logs. ${message.author}`);
                 return;
             }
-            row.forEach((row) => {
-                var describeEmbed = new Discord.RichEmbed()
-                    .setColor('#FFFFFF')
-                    .setTitle('Course Information')
-                    .setAuthor('Bubo')
-                    .addField('Course Name', `${row.course_name}`)
-                    .addField('Course Description', `${row.course_overview}.`)
-                    .addField('Course PDF', `${row.course_url} .`)
-                    .setTimestamp();
-                message.channel.send(describeEmbed);
-            });
+            if (typeof result[0] === 'undefined') {
+                message.reply('Please enter a valid course ID');
+                return;
+            }
+            const embed = new Discord.RichEmbed()
+                .setColor('#FFFFFF')
+                .setTitle('Course Information')
+                .setAuthor('Bubo')
+                .addField('Course Name', `${result[0].name}`)
+                .addField('Course Description', `${result[0].description}`)
+                .addField('Course PDF', `${result[0].pdf_url}`)
+                .setTimestamp();
+            message.channel.send(embed);
         });
     }
 }
