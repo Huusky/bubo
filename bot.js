@@ -16,14 +16,6 @@ client.db = mysql.createPool({
     database: db_name
 });
 
-/* client.db.connect((err) => {
-    if (err) {
-        logger.log(err, 'error');
-        throw err;
-    }
-    logger.log('db connected');
-}) */
-
 //load commands from /commands/ folder
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
