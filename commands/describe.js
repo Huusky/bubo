@@ -10,7 +10,7 @@ module.exports = {
     async execute(message, args) {
         const course_id = args[0].toUpperCase();
         const sql = `SELECT name, description, pdf_url FROM courses WHERE id=?`;
-        message.client.db.query(sql, [course_id], (err, result) => {
+        await message.client.db.query(sql, [course_id], (err, result) => {
             if (err) {
                 logger.log(err, 'error');
                 return;
