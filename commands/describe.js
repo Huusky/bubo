@@ -23,7 +23,7 @@ module.exports = {
                 .setColor('#FFFFFF')
                 .setTitle(`${course_id} - ${result[0].name}`)
                 .setAuthor('Bubo')
-                .addDescription(`${result[0].description}`)
+                .setDescription(`${result[0].description}`)
                 .addField('Course PDF', `${result[0].pdf_url}`)
                 .setTimestamp();
             message.channel.send(embed);
