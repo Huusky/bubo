@@ -7,7 +7,7 @@ module.exports = {
     args: true,
     enabled: true,
     permissions: 'ADMINISTRATOR',
-    execute(message, args) {
+    async execute(message, args) {
         const commandName = args[0].toLowerCase();
         const command = message.client.commands.get(commandName)
             || message.client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
