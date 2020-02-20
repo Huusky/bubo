@@ -4,7 +4,7 @@ module.exports = {
     usage: '',
     args: false,
     enabled: true,
-    execute(message, args) {
+    async execute(message, args) {
         message.reply('https://drive.google.com/drive/u/3/mobile/folders/0B1S7OJNChk1-cWhwNWZTb2JNY1E');
     }
 }

@@ -6,7 +6,7 @@ module.exports = {
     usage: 'or help <command>',
     args: false,
     enabled: true,
-    execute(message, args) {
+    async execute(message, args) {
         if (!args[0]) {
             command_list = message.client.commands.map(command => command.name).join(', ');
             const embed = new Discord.RichEmbed()
