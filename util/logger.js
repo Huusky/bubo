@@ -8,6 +8,8 @@ module.exports = class logger {
     switch (type) {
       case 'log':
         return console.log(`${date} [LOG] ${message}`);
+      case 'audit':
+        return console.log(`${date} [AUDIT] ${message}`.magenta);
       case 'warn':
         return console.log(`${date} [WARN] ${message}`.yellow);
       case 'error':
