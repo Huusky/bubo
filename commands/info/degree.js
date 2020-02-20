@@ -6,7 +6,7 @@ module.exports = {
     description: 'Get degree information',
     usage: '<degree>',
     args: true,
-    enabled: true,
+    enabled: false,
     async execute(client, message, args) {
         const degree_name = args[0];
         const sql = `SELECT * FROM degree WHERE id=? OR name=?`;

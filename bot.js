@@ -17,7 +17,7 @@ client.db = mysql.createPool({
 });
 
 //load commands from /commands/ folder based on categories
-const categories = ['admin', 'info', 'utility', 'misc'];
+const categories = ['admin', 'info', 'misc', 'utility'];
 
 for (const category of categories) {
     const commandFiles = fs.readdirSync(`./commands/${category}`).filter(file => file.endsWith('.js'));
