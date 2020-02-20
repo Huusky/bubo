@@ -3,7 +3,6 @@ const Discord = require('discord.js');
 const logger = require('../util/logger');
 
 module.exports = async (client, member) => {
-    const date = new Date();
     const embed = new Discord.RichEmbed()
         .setAuthor('Member Left', member.user.displayAvatarURL)
         .setDescription(`<@${member.id}> ${member.user.username}#${member.user.discriminator}`)

@@ -3,7 +3,6 @@ const Discord = require('discord.js');
 const logger = require('../util/logger');
 
 module.exports = async (client, role) => {
-    const date = new Date();
     const embed = new Discord.RichEmbed()
         .setAuthor(role.guild.name, role.guild.iconURL)
         .setColor('#FF0000')
