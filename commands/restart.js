@@ -5,7 +5,7 @@ module.exports = {
     args: false,
     enabled: true,
     permissions: 'ADMINISTRATOR',
-    async execute(message, args) {
+    async execute(client, message, args) {
         process.exit(1);
     }
 }

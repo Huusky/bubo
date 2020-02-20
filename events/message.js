@@ -38,7 +38,7 @@ module.exports = async (client, message) => {
 
     //try to execute the command. warn user there was an error
     try {
-        command.execute(message, args);
+        command.execute(client, message, args);
     } catch (err){
         logger.log(err);
         message.reply('There was an error trying to execute that command!');

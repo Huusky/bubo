@@ -6,10 +6,10 @@ module.exports = {
     usage: '<course code>',
     args: true,
     enabled: true,
-    async execute(message, args) {
+    async execute(client, message, args) {
         const course_id = args[0].toUpperCase();
         const sql = `SELECT name FROM courses WHERE id=?`;
-        await message.client.db.query(sql, [course_id], (err, result) => {
+        await client.db.query(sql, [course_id], (err, result) => {
             if (err) {
                 logger.log(err, 'error');
                 return;

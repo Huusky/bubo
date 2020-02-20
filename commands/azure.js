@@ -4,7 +4,7 @@ module.exports = {
     usage: '',
     args: false,
     enabled: true,
-    async execute(message, args) {
+    async execute(client, message, args) {
         message.reply('https://azure.microsoft.com/en-us/offers/ms-azr-0144p/');
     }
 }
