@@ -5,12 +5,11 @@ module.exports = {
     description: 'Reloads a command',
     usage: '<command name>',
     args: true,
-    enabled: true,
+    enabled: false,
     permissions: 'ADMINISTRATOR',
     async execute(client, message, args) {
         const commandName = args[0].toLowerCase();
-        const command = message.client.commands.get(commandName)
-            || message.client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
+        const command = message.client.commands.get(commandName);
         
         if (!command) return message.channel.send(`There is no command with that name or alias \`${commandName}\`, ${message.author}`);
 

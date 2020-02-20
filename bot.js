@@ -16,12 +16,16 @@ client.db = mysql.createPool({
     database: db_name
 });
 
-//load commands from /commands/ folder
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-for (const file of commandFiles) {
-    const command = require(`./commands/${file}`);
-    client.commands.set(command.name, command);
-    logger.log(`${command.name} loaded.`);
+//load commands from /commands/ folder based on categories
+const categories = ['admin', 'info', 'utility', 'misc'];
+
+for (const category of categories) {
+    const commandFiles = fs.readdirSync(`./commands/${category}`).filter(file => file.endsWith('.js'));
+    for (const file of commandFiles) {
+        const command = require(`./commands/${category}/${file}`);
+        client.commands.set(command.name, command);
+        logger.log(`${command.name} loaded`);
+    }
 }
 
 //load events from /events/ folder
