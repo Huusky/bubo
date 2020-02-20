@@ -1,4 +1,4 @@
-const logger = require('../util/logger');
+const logger = require('../../util/logger');
 const Discord = require('discord.js');
 
 module.exports = {
@@ -7,8 +7,8 @@ module.exports = {
     usage: '<certification>',
     args: true,
     enabled: true,
-    async execute(message, args) {
-        const certification_name = args.join(' ').toUpperCase();
+    async execute(client, message, args) {
+        const certification_name = args.join(" ");
         const sql = `SELECT * FROM certification WHERE id=? OR name=?`;
         await message.client.db.query(sql, [certification_name, certification_name], (err, result) => {
             if (err) {

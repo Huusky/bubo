@@ -22,7 +22,7 @@ module.exports = async (client, message) => {
         let msg = `You didn't provide required arguments`;
 
         if (command.usage) {
-            msg += `\nThe proper usage would be \`${prefix}${command.name} ${command.usage}\``;
+            msg += `\nThe proper usage would be \`${prefix} ${command.name} ${command.usage}\``;
         }
 
         return message.reply(msg);

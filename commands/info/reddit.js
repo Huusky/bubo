@@ -4,7 +4,7 @@ module.exports = {
     usage: '',
     args: false,
     enabled: true,
-    async execute(message, args) {
+    async execute(client, message, args) {
         message.reply('https://www.reddit.com/r/WGU/');
     }
 }

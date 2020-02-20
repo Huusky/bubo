@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const logger = require('../util/logger');
+const logger = require('../../util/logger');
 
 module.exports = {
     name: 'report',
