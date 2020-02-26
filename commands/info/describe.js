@@ -9,7 +9,7 @@ module.exports = {
     enabled: true,
     async execute(client, message, args) {
         const course_id = args[0].toUpperCase();
-        const sql = `SELECT name, description, pdf_url FROM course WHERE id=?`;
+        const sql = `SELECT name, description FROM course WHERE id=?`;
         await client.db.query(sql, [course_id], (err, result) => {
             if (err) {
                 logger.log(err, 'error');
@@ -24,7 +24,6 @@ module.exports = {
                 .setTitle(`${course_id} - ${result[0].name}`)
                 .setAuthor('Bubo')
                 .setDescription(`${result[0].description}`)
-                .addField('Course PDF', `${result[0].pdf_url}`)
                 .setTimestamp();
             message.channel.send(embed);
         });
