@@ -2,7 +2,7 @@ const { logChannel } = require('../config.json');
 const { RichEmbed } = require('discord.js');
 const logger = require('../util/logger');
 
-module.exports = (client, oldMessage, newMessage) => {
+module.exports = async (client, oldMessage, newMessage) => {
     const embed = new Discord.RichEmbed()
         .setAuthor(`${oldMessage.user.username}#${oldMessage.user.discriminator}`,
             oldMessage.user.displayAvatarURL)
@@ -12,5 +12,5 @@ module.exports = (client, oldMessage, newMessage) => {
         .addField('Message after', newMessage.content)
         .setFooter(`ID: ${oldMessage.user.id}`)
         .setTimestamp();
-await client.channels.get(logChannel).send(embed);
+    await client.channels.get(logChannel).send(embed);
 }
