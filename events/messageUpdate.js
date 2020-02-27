@@ -3,7 +3,7 @@ const { RichEmbed } = require('discord.js');
 const logger = require('../util/logger');
 
 module.exports = async (client, oldMessage, newMessage) => {
-    const embed = new Discord.RichEmbed()
+    const embed = new RichEmbed()
         .setAuthor(`${oldMessage.user.username}#${oldMessage.user.discriminator}`,
             oldMessage.user.displayAvatarURL)
         .setColor('#FFA500')
