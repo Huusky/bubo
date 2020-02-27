@@ -12,7 +12,7 @@ module.exports = (client, oldMessage, newMessage) => {
         // Hacky shit here, \u200B for zero width space since discord complains about empty embed fields
         .addField('Message before', `${oldMessage.content}\u200B`)
         .addField('Message after', `${newMessage.content}\u200B`)
-        .setFooter(`User ID: ${oldMessage.author.id}`)
+        .setFooter(`Author ID: ${oldMessage.author.id} | Message ID: ${oldMessage.id}`)
         .setTimestamp();
     client.channels.get(logChannel).send(embed);
 }
