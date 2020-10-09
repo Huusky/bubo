@@ -15,7 +15,7 @@ module.exports = {
                 return;
             }
             if (typeof result[0] === 'undefined') {
-                message.reply('Please enter a valid course id');
+                message.reply('Please enter a valid course id. If this is a missing course, please submit a course request via github (!bubo github)');
                 return;
             }
             message.reply(`${course_id} is ${result[0].name}`)
