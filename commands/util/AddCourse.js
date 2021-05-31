@@ -22,7 +22,8 @@ class default_1 extends discord_js_commando_1.Command {
                     prompt: "What is the course name to add",
                     type: "string"
                 }
-            ]
+            ],
+            userPermissions: ["KICK_MEMBERS", "BAN_MEMBERS"]
         });
         this._client = client;
     }
