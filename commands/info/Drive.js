@@ -11,7 +11,7 @@ class default_1 extends discord_js_commando_1.Command {
         });
     }
     async run(message, args, fromPattern, result) {
-        return await message.reply('https://drive.google.com/drive/u/3/folders/0B1S7OJNChk1-cWhwNWZTb2JNY1E');
+        return await message.reply(`here you go! Don't forget you need to use your WGU to access this:\nhttps://drive.google.com/drive/u/3/folders/0B1S7OJNChk1-cWhwNWZTb2JNY1E`);
     }
 }
 exports.default = default_1;
