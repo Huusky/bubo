@@ -22,13 +22,13 @@ class default_1 extends discord_js_commando_1.Command {
         this._client = client;
     }
     async run(message, args, fromPattern, result) {
-        const sql = `SELECT id, name FROM course WHERE id=?`;
-        const course = await this._client.db.prepare(sql).get(args.courseCode.toUpperCase());
-        if (typeof course === 'undefined') {
-            return await message.reply(`Please enter a valid course code. If this is an error, please notify a moderator to add the course.`);
-        }
-        else
-            return await message.reply(`${args.courseCode.toUpperCase()} is ${course.name}`);
+        const sql = `SELECT * FROM bubo.course WHERE id=$1`;
+        return this._client.db.query(sql, [args.courseCode])
+            .then(res => {
+            if (typeof res.rows[0] === 'undefined')
+                return message.reply("please enter a valid course code. If this is an error, please notify a moderator.");
+            return message.reply(`${args.courseCode} is ${res.rows[0].name}`);
+        }).catch(err => console.error(err));
     }
 }
 exports.default = default_1;

@@ -25,12 +25,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const BuboClient_1 = require("./client/BuboClient");
 const discord_js_1 = require("discord.js");
 const path_1 = __importDefault(require("path"));
-const SQLite = __importStar(require("better-sqlite3"));
 const Cron = __importStar(require("node-cron"));
 const Config = __importStar(require("./config.json"));
-const client = new BuboClient_1.BuboClient({ owner: "187069489530011648", commandPrefix: "!bubo" });
+const PG = __importStar(require("pg"));
+const client = new BuboClient_1.BuboClient({ owner: Config.owner, commandPrefix: "!bubo" });
 client.registry
     .registerGroups([
+    ['admin', 'Administrator'],
     ['info', 'Info'],
     ['misc', 'Misc'],
     ['moderator', 'Moderator'],
@@ -40,9 +41,18 @@ client.registry
     .registerCommandsIn(path_1.default.join(__dirname, 'commands'));
 //.registerTypesIn(path.join(__dirname, 'types'));
 //Set activity like a boss
-client.once("ready", () => { client.user?.setActivity("To the moooooon"); });
+client.once("ready", () => { client.user?.setActivity(Config.activity); });
 //Load db
-client.db = new SQLite.default('./courses.db', { verbose: console.log });
+//client.db = new SQLite.default('./courses.db', { verbose: console.log });
+//Connect to db
+client.db = new PG.Pool({
+    host: Config.pgHost,
+    user: Config.pgUser,
+    database: Config.pgDatabase,
+    password: Config.pgPassword,
+    port: Config.pgPort
+});
+//Yeet yeet, monthly reminder to students that the sky is NOT falling when wgu.edu explodes
 Cron.schedule('0 12 1 1-12 *', async () => {
     const d = new Date().toLocaleString('default', { month: 'long' }).toUpperCase();
     return await client.announcementsChannel.send(`
@@ -55,6 +65,18 @@ Cron.schedule('0 12 1 1-12 *', async () => {
 });
 //Log this mf in
 client.login(Config.token);
+//Fetch and cache important channels. Probably a better way to do this but I don't give a shit
+client.once("ready", () => {
+    client.channels.fetch(Config.announcementsChannel).then(c => {
+        client.announcementsChannel = c;
+    });
+    client.channels.fetch(Config.logChannel).then(c => {
+        client.logChannel = c;
+    });
+    client.channels.fetch(Config.userModChannel).then(c => {
+        client.userModChannel = c;
+    });
+});
 //Some more logging fuckery except in discord and I'm too lazy to put this shit in a separate file
 client.on("guildBanAdd", (g, u) => {
     const embed = new discord_js_1.MessageEmbed()
@@ -104,6 +126,6 @@ client.on("error", e => console.error(e));
 //Log unhandled rejections
 process.on("unhandledRejection", (r) => console.log(r));
 //Handle exits so we can close db properly
-process.on("exit", () => { client.db.close(); process.exit(); });
-process.on("SIGINT", () => { client.db.close(); process.exit(); });
-process.on("uncaughtException", (e) => { console.log(e); client.db.close(); process.exit(); });
+process.on("exit", () => { client.db.end(); process.exit(); });
+process.on("SIGINT", () => { client.db.end(); process.exit(); });
+process.on("uncaughtException", (e) => { console.log(e); client.db.end(); process.exit(); });

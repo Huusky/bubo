@@ -25,9 +25,9 @@ class default_1 extends discord_js_commando_1.Command {
     constructor(client) {
         super(client, {
             name: 'addannouncement',
-            aliases: ['announce', 'aa'],
+            aliases: ['aannounce', 'aa'],
             group: 'moderator',
-            memberName: 'announcement',
+            memberName: 'addannouncement',
             hidden: true,
             description: `Make an announcement in the <#${Config.announcementsChannel}> channel`,
             examples: ['addannouncement [text here]', 'announce [text here]', 'aa [text here]'],
@@ -44,8 +44,7 @@ class default_1 extends discord_js_commando_1.Command {
         this._client = client;
     }
     async run(message, args, fromPattern, result) {
-        const announcementsChannel = this._client.channels.cache.get(Config.announcementsChannel); //Get channel and cast to TextChannel
-        return await announcementsChannel.send(args.announcement);
+        return await this._client.announcementsChannel.send(args.announcement);
     }
 }
 exports.default = default_1;

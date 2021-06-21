@@ -49,8 +49,7 @@ class default_1 extends discord_js_commando_1.Command {
         this._client = client;
     }
     async run(message, args, fromPattern, result) {
-        const announcementsChannel = this._client.channels.cache.get(Config.announcementsChannel); //Get channel and cast to TextChannel
-        return await announcementsChannel.messages.fetch({ around: args.messageid, limit: 1 }).then(async (m) => {
+        return await this._client.announcementsChannel.messages.fetch({ around: args.messageid, limit: 1 }).then(async (m) => {
             if (typeof m.first() === 'undefined' || m.first()?.author.id != Config.botId || m.first()?.id != args.messageid) {
                 return await message.reply("That message either doesn't belong to the bot, or can't be found");
             }
