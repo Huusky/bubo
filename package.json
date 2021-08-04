@@ -18,7 +18,7 @@
   "homepage": "https://github.com/Huusky/bubo#readme",
   "dependencies": {
     "@types/better-sqlite3": "^5.4.1",
-    "@types/node": "^15.6.1",
+    "@types/node": "^16.4.12",
     "@types/request": "^2.48.5",
     "@types/sqlite3": "^3.1.7",
     "better-sqlite3": "^7.4.0",
