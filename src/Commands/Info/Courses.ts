@@ -11,11 +11,11 @@ export default class extends MessageCommand {
     }
 
     public async run(interaction: ContextMenuInteraction, client: Client): Promise<any> {
-        const re = /(C[\d]{3})|(D[\d]{3})/gm;
+        const re = /(C[\d]{3})|(D[\d]{3})/gmi;
         const match = interaction.options.getMessage('message')!.content.match(re);
         const matches: string[] = []; 
         if (match) {
-            for (const m of match) matches.push(m);
+            for (const m of match) matches.push(m.toUpperCase());
         } else {
             return await interaction.reply({content:'No courses mentioned in that message',ephemeral:true});
         }
