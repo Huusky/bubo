@@ -17,5 +17,4 @@ Moderation and information bot for unofficial WGU discord
 | /linkedin | Get a link to LinkedIn |
 | /pluralsight | Get a link to Pluralsight |
 | /reddit | Get a link to the WGU subreddit |
-| /reminder | Set a reminder |
 | /udemy | Get a link to Udemy |
