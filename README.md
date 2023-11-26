@@ -18,3 +18,5 @@ Moderation and information bot for unofficial WGU discord
 | /pluralsight | Get a link to Pluralsight |
 | /reddit | Get a link to the WGU subreddit |
 | /udemy | Get a link to Udemy |
+| /dnata | Get a link on how to ask technical questions |
+| /coding-help | Redirect someone to the dedicated coding support channel |
